@@ -1,11 +1,11 @@
-import { useContext, useCallback, useEffect } from 'react';
+import { useContext, useCallback, useEffect, useMemo } from 'react';
 import { AppContext } from '../App';
 import Key from './Key';
 
 export const Keyboard = () => {
-    const keys1 = ['Q','W','E','R','T','Y','U','I','O','P'];
-    const keys2 = ['A','S','D','F','G','H','J','K','L'];
-    const keys3 = ['Z','X','C','V','B','N','M'];
+    const keys1 = useMemo(() => ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'], []);
+    const keys2 = useMemo(() => ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'], []);
+    const keys3 = useMemo(() => ['Z', 'X', 'C', 'V', 'B', 'N', 'M'], []);
 
     const { onEnter, onDelete, onSelectLetter, disabledLetters, correctLetters, almostLetters } = useContext(AppContext);
 
@@ -32,7 +32,7 @@ export const Keyboard = () => {
                 }
             })
         }
-    });
+    }, [onEnter, onDelete, onSelectLetter, keys1, keys2, keys3]);
 
     useEffect(() => {
         document.addEventListener("keydown", handleKeys)

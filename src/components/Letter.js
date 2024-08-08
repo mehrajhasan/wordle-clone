@@ -20,6 +20,7 @@ export const Letter = ({letterPos, attemptVal}) => {
         if(letter !== "" && !correct && almost){
             setAlmostLetters((prev) => [...prev, letter]);
         }
+        // eslint-disable-next-line
     }, [currAttempt.attempt]);
 
 
