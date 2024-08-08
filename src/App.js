@@ -17,7 +17,6 @@ function App() {
   const [almostLetters, setAlmostLetters] = useState([]);
   const [correctWord, setCorrectWord] = useState("");
   const [end, setEnd] = useState({end: false, guessedWord: false});
-  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     generateWordSet().then((words) => {
@@ -26,12 +25,6 @@ function App() {
     });
 
   }, []);
-
-  useEffect(() => {
-    if(end.end){
-      setTimeout(() => setModal(true), 2000);
-    }
-  }, [end])
 
   const onSelectLetter = (keyVal) => {
     if(currAttempt.letterPos > 4)
@@ -80,8 +73,6 @@ function App() {
     }
 
   };
-
-  console.log(correctWord)
 
   return (
     <div className="App">
