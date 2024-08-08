@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Letter from './Letter';
 
 export const Board = () => {
