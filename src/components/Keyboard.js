@@ -7,7 +7,7 @@ export const Keyboard = () => {
     const keys2 = ['A','S','D','F','G','H','J','K','L'];
     const keys3 = ['Z','X','C','V','B','N','M'];
 
-    const { board, onEnter, onDelete, onSelectLetter} = useContext(AppContext);
+    const { onEnter, onDelete, onSelectLetter, disabledLetters, correctLetters, almostLetters } = useContext(AppContext);
 
     const handleKeys = useCallback((event) => {
         if(event.key === "Enter"){
@@ -19,6 +19,7 @@ export const Keyboard = () => {
                 if(event.key.toLowerCase() === key.toLowerCase()){
                     onSelectLetter(key)
                 }
+                
             })
             keys2.forEach((key) => {
                 if(event.key.toLowerCase() === key.toLowerCase()){
@@ -45,20 +46,20 @@ export const Keyboard = () => {
         <div className="keyboard" onKeyDown={handleKeys}>
             <div className="row1">
                 {keys1.map((key) => {
-                   return <Key keyVal={key}/>
+                   return <Key keyVal={key} disabled={disabledLetters.includes(key)} correct={correctLetters.includes(key)} almost={almostLetters.includes(key)}/>
                 })}
             </div>
 
             <div className="row2">
                 {keys2.map((key) => {
-                   return <Key keyVal={key}/>
+                   return <Key keyVal={key} disabled={disabledLetters.includes(key)} correct={correctLetters.includes(key)} almost={almostLetters.includes(key)}/>
                 })}
             </div>
 
             <div className="row3">
             <Key keyVal={"ENTER"} bigKey/>
                 {keys3.map((key) => {
-                   return <Key keyVal={key}/>
+                   return <Key keyVal={key} disabled={disabledLetters.includes(key)} correct={correctLetters.includes(key)} almost={almostLetters.includes(key)}/>
                 })}
             <Key keyVal={"DEL"} bigKey/>
             </div>
